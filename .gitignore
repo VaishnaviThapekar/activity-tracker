@@ -1,0 +1,38 @@
+# Node
+node_modules/
+.env
+.env.*
+*.env
+.DS_Store
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Vercel
+.vercel/
+
+# Build output
+dist/
+build/
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Misc
+*.local
+*.secret
+*.bak
+*.tmp
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Server sensitive files (add more if needed)
+server/credentials.json
+server/.env
+server/.env.*
+.vercel

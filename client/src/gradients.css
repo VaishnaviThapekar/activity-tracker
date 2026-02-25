@@ -1,0 +1,162 @@
+/* Gradient Utilities - Inspired by Modern Landing Pages */
+
+/* Cyan to Purple Gradient (Primary Brand Gradient) */
+.gradient-primary {
+  background: linear-gradient(to right, #06b6d4, #a855f7);
+}
+
+.gradient-primary-text {
+  background: linear-gradient(to right, #06b6d4, #a855f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Gradient Border Effect with Glow */
+.gradient-border-glow {
+  position: relative;
+}
+
+.gradient-border-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(to right, #06b6d4, #a855f7);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  transition: all 0.2s;
+}
+
+.gradient-border-glow:hover::before {
+  box-shadow: 0 10px 15px -3px rgba(6, 182, 212, 0.5);
+}
+
+/* Animated Gradient Background */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-animated {
+  background: linear-gradient(270deg, #06b6d4, #a855f7, #ec4899);
+  background-size: 600% 600%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+/* Button Gradient Styles */
+.btn-gradient {
+  position: relative;
+  background: transparent;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.btn-gradient::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(to right, #06b6d4, #a855f7);
+  border-radius: inherit;
+  z-index: -1;
+  transition: all 0.3s;
+}
+
+.btn-gradient:hover::before {
+  box-shadow: 0 20px 25px -5px rgba(6, 182, 212, 0.5),
+    0 10px 10px -5px rgba(168, 85, 247, 0.4);
+}
+
+.btn-gradient::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: black;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.btn-gradient span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Card Gradient Border */
+.card-gradient {
+  position: relative;
+  background: var(--card);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.card-gradient::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, #06b6d4, #a855f7);
+  border-radius: inherit;
+  opacity: 0.5;
+  z-index: -1;
+  transition: opacity 0.3s;
+}
+
+.card-gradient:hover::before {
+  opacity: 1;
+}
+
+/* Glow Effect */
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+}
+
+.glow-gradient {
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.4), 0 0 60px rgba(168, 85, 247, 0.3);
+}
+
+/* Utility Classes */
+.bg-gradient-cyan-purple {
+  background: linear-gradient(to right, #06b6d4, #a855f7);
+}
+
+.bg-gradient-cyan-purple-vertical {
+  background: linear-gradient(to bottom, #06b6d4, #a855f7);
+}
+
+.bg-gradient-cyan-purple-diagonal {
+  background: linear-gradient(135deg, #06b6d4, #a855f7);
+}
+
+/* Badge/Tag Gradient */
+.badge-gradient {
+  background: linear-gradient(to right, #06b6d4, #a855f7);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Progress Bar Gradient */
+.progress-gradient {
+  background: linear-gradient(to right, #06b6d4, #a855f7);
+  height: 0.5rem;
+  border-radius: 9999px;
+  transition: width 0.5s ease;
+}

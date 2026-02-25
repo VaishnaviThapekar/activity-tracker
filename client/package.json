@@ -1,0 +1,41 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.1.2",
+    "@react-three/drei": "^10.0.3",
+    "@react-three/fiber": "^9.0.4",
+    "@splinetool/react-spline": "^4.1.0",
+    "@splinetool/runtime": "^1.12.16",
+    "@vitejs/plugin-react": "^5.1.2",
+    "axios": "^1.13.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.23.26",
+    "lucide-react": "^0.556.0",
+    "motion": "^12.23.26",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "recharts": "^3.5.1",
+    "socket.io-client": "^4.8.1",
+    "tailwind-merge": "^3.0.1",
+    "tailwindcss-animate": "^1.0.7",
+    "three": "^0.181.2",
+    "vite": "^7.2.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.17",
+    "tailwindcss": "^4.1.17"
+  }
+}

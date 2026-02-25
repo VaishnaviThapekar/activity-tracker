@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: activity-tracker-api
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: FRONTEND_URL
+        value: https://activity-tracker-gold.vercel.app
+      - key: JWT_SECRET
+        generateValue: true
