@@ -2,7 +2,7 @@
 
 A full-stack task management application with real-time notifications, analytics, and interactive visualizations. Track your daily activities, set reminders, and visualize your productivity with beautiful 3D globe and charts.
 
-## 🌟 Features
+## ✨ Features
 
 ### Core Functionality
 - **User Authentication** - Secure JWT-based login and registration
@@ -36,7 +36,7 @@ A full-stack task management application with real-time notifications, analytics
 ## 🚀 Live Demo
 
 - **Frontend**: [https://activity-tracker-gold.vercel.app](https://activity-tracker-gold.vercel.app)
-- **Backend API**: Deploy to Render (see deployment instructions)
+- **Backend API**: [https://activity-tracker-api-fm7d.onrender.com](https://activity-tracker-api-fm7d.onrender.com)
 
 ## 📋 Tech Stack
 
@@ -69,7 +69,7 @@ A full-stack task management application with real-time notifications, analytics
 
 ### Clone Repository
 ```bash
-git clone https://github.com/<your-username>/activity-tracker.git
+git clone https://github.com/VaishnaviThapekar/activity-tracker.git
 cd activity-tracker
 ```
 
@@ -98,337 +98,286 @@ cd ..
 
 ### Backend Environment Variables
 
-Create `server/.env`:
+Create `server/.env` file:
+
 ```env
 PORT=3001
-NODE_ENV=development
-JWT_SECRET=your-super-secret-jwt-key-change-in-production
-FRONTEND_URL=http://localhost:5173
-
-# Optional: Email notifications (Gmail)
-EMAIL_USER=your-email@gmail.com
-EMAIL_PASSWORD=your-app-specific-password
-
-# Optional: SMS notifications (Twilio)
-TWILIO_ACCOUNT_SID=your-twilio-account-sid
-TWILIO_AUTH_TOKEN=your-twilio-auth-token
-TWILIO_PHONE_NUMBER=+1234567890
+NODE_ENV=production
+JWT_SECRET=your-super-secret-key-here-min-32-chars
+FRONTEND_URL=https://activity-tracker-gold.vercel.app
 ```
+
+See `server/.env.example` for all available options.
 
 ### Frontend Environment Variables
 
-Create `client/.env`:
-```env
-VITE_API_URL=http://localhost:3001
+On Vercel, set in Project Settings → Environment Variables:
+
+```
+VITE_API_URL=https://activity-tracker-api-fm7d.onrender.com
 ```
 
-## 🏃 Running Locally
-
-### Development Mode
-
-**Start both client and server concurrently:**
-```bash
-npm run dev
-```
-
-This runs:
-- Frontend at `http://localhost:5173`
-- Backend at `http://localhost:3001`
-
-**Or run separately:**
-
-**Backend only:**
-```bash
-cd server
-npm start
-```
-
-**Frontend only:**
-```bash
-cd client
-npm run dev
-```
-
-### Production Build
-
-**Build frontend:**
-```bash
-npm run build
-```
-
-**Preview production build:**
-```bash
-cd client
-npm run preview
-```
-
-## 🌐 Deployment
+## 🚀 Deployment
 
 ### Frontend Deployment (Vercel)
 
-The frontend is already configured with `vercel.json`.
+1. Push code to GitHub
+2. Connect GitHub to Vercel
+3. Select `activity-tracker` repository
+4. Build settings auto-configured
+5. Set environment variable `VITE_API_URL` to backend URL
+6. Deploy!
 
-1. Install Vercel CLI:
-```bash
-npm install -g vercel
-```
-
-2. Login to Vercel:
-```bash
-vercel login
-```
-
-3. Deploy to production:
-```bash
-vercel --prod
-```
+**Live URL**: [https://activity-tracker-gold.vercel.app](https://activity-tracker-gold.vercel.app)
 
 ### Backend Deployment (Render)
 
-The project includes `render.yaml` for one-click deployment.
+The project includes `render.yaml` for easy deployment:
 
-#### Method 1: Blueprint Deployment (Recommended)
+1. Go to [render.com](https://render.com)
+2. Create new Blueprint from GitHub repository
+3. Connect your GitHub account
+4. Select `activity-tracker` repository
+5. Choose `main` branch
+6. Render auto-detects `render.yaml`
+7. Configure environment variables (JWT_SECRET auto-generates)
+8. Deploy!
 
-1. Push code to GitHub
-2. Go to [Render Dashboard](https://dashboard.render.com/)
-3. Click **New** → **Blueprint**
-4. Connect your GitHub repository
-5. Select the repository and branch
-6. Render will detect `render.yaml` and create the service automatically
+**Live URL**: [https://activity-tracker-api-fm7d.onrender.com](https://activity-tracker-api-fm7d.onrender.com)
 
-#### Method 2: Manual Deployment
+## 📚 API Documentation
 
-1. Go to [Render Dashboard](https://dashboard.render.com/)
-2. Click **New** → **Web Service**
-3. Connect your repository
-4. Configure:
-   - **Root Directory**: `server`
-   - **Build Command**: `npm install`
-   - **Start Command**: `npm start`
-   - **Environment**: Node
-5. Add environment variables:
-   ```
-   NODE_ENV=production
-   PORT=10000
-   JWT_SECRET=<generate-strong-secret>
-   FRONTEND_URL=https://activity-tracker-gold.vercel.app
-   ```
-6. Deploy
+### Authentication Endpoints
 
-#### After Backend Deployment
-
-1. Copy your Render backend URL (e.g., `https://activity-tracker-api.onrender.com`)
-2. Update Vercel environment variables:
-   - Go to Vercel project settings
-   - Add `VITE_API_URL` = `https://your-render-url.onrender.com`
-3. Redeploy frontend:
-   ```bash
-   vercel --prod
-   ```
-
-### Alternative Backend Hosts
-
-The backend can also be deployed to:
-- **Railway** - Great for full-stack apps
-- **Fly.io** - Global edge deployment
-- **Heroku** - Classic PaaS platform
-- **DigitalOcean App Platform** - Managed containers
-
-Update the CORS settings in `server/index.js` to match your frontend URL.
-
-## 📁 Project Structure
-
+#### Register
 ```
-activity-tracker/
-├── client/                  # React frontend
-│   ├── src/
-│   │   ├── components/      # React components
-│   │   │   ├── Globe3D.jsx         # 3D globe visualization
-│   │   │   ├── TaskManager.jsx     # Task CRUD operations
-│   │   │   ├── ProgressCharts.jsx  # Analytics charts
-│   │   │   ├── UserSettings.jsx    # Notification preferences
-│   │   │   └── ui/                 # Reusable UI components
-│   │   ├── App.jsx          # Main app component
-│   │   ├── main.jsx         # React entry point
-│   │   └── index.css        # Global styles
-│   ├── index.html
-│   ├── vite.config.js
-│   └── package.json
-├── server/                  # Node.js backend
-│   ├── index.js             # Express server & Socket.IO
-│   ├── database.js          # SQLite setup & schema
-│   ├── reminderService.js   # Cron jobs for reminders
-│   ├── recurringTaskService.js  # Recurring task logic
-│   ├── emailService.js      # Nodemailer config
-│   ├── smsService.js        # Twilio SMS
-│   ├── activity_tracker.sqlite  # SQLite database
-│   └── package.json
-├── render.yaml              # Render deployment config
-├── vercel.json              # Vercel deployment config
-├── package.json             # Root package (dev scripts)
-└── README.md
+POST /api/auth/register
+Content-Type: application/json
+
+{
+  "username": "user@example.com",
+  "password": "securepassword123"
+}
 ```
 
-## 🗄️ Database Schema
+#### Login
+```
+POST /api/auth/login
+Content-Type: application/json
 
-### Tables
-- **users** - User accounts (username, hashed password)
-- **tasks** - Daily tasks with scheduling and recurrence
-- **activity_logs** - Login tracking with geolocation
-- **notifications** - In-app notification history
-- **reminders** - Reminder send history
-- **daily_summaries** - Cached daily statistics
-- **user_preferences** - Notification settings per user
+{
+  "username": "user@example.com",
+  "password": "securepassword123"
+}
+```
 
-## 🔔 Notification Setup
+Response includes JWT token for future requests.
 
-### Browser Notifications
-Automatically enabled. Browser will prompt for permission on first use.
+### Tasks Endpoints
 
-### Email Notifications (Gmail)
+#### Get All Tasks
+```
+GET /api/tasks?date=2024-02-25
+Headers: Authorization: Bearer <JWT_TOKEN>
+```
 
-1. Enable 2-factor authentication on your Gmail account
-2. Generate an App Password:
-   - Go to Google Account → Security
-   - 2-Step Verification → App passwords
-   - Generate password for "Mail"
-3. Add to `server/.env`:
-   ```env
-   EMAIL_USER=your-email@gmail.com
-   EMAIL_PASSWORD=your-16-char-app-password
-   ```
+#### Create Task
+```
+POST /api/tasks
+Headers: Authorization: Bearer <JWT_TOKEN>
+Content-Type: application/json
 
-### SMS Notifications (Twilio)
+{
+  "title": "Morning Meeting",
+  "description": "Team standup",
+  "scheduled_time": "09:00",
+  "duration_minutes": 30,
+  "task_date": "2024-02-25",
+  "is_recurring": false
+}
+```
 
-1. Sign up at [Twilio](https://www.twilio.com/)
-2. Get your credentials from Twilio Console
-3. Add to `server/.env`:
-   ```env
-   TWILIO_ACCOUNT_SID=AC...
-   TWILIO_AUTH_TOKEN=...
-   TWILIO_PHONE_NUMBER=+1234567890
-   ```
+#### Update Task
+```
+PUT /api/tasks/:id
+Headers: Authorization: Bearer <JWT_TOKEN>
+Content-Type: application/json
+```
 
-## 📊 API Endpoints
+#### Complete Task
+```
+PATCH /api/tasks/:id/complete
+Headers: Authorization: Bearer <JWT_TOKEN>
+```
 
-### Authentication
-- `POST /api/auth/register` - Register new user
-- `POST /api/auth/login` - Login user
+#### Delete Task
+```
+DELETE /api/tasks/:id
+Headers: Authorization: Bearer <JWT_TOKEN>
+```
 
-### Tasks
-- `GET /api/tasks?date=YYYY-MM-DD` - Get tasks for date
-- `POST /api/tasks` - Create new task
-- `PUT /api/tasks/:id` - Update task
-- `PATCH /api/tasks/:id/complete` - Mark task complete
-- `DELETE /api/tasks/:id` - Delete task
-- `PATCH /api/tasks/:id/toggle-recurring` - Activate/deactivate recurring task
+### User Preferences
+
+#### Get Preferences
+```
+GET /api/user/preferences
+Headers: Authorization: Bearer <JWT_TOKEN>
+```
+
+#### Update Preferences
+```
+PUT /api/user/preferences
+Headers: Authorization: Bearer <JWT_TOKEN>
+Content-Type: application/json
+
+{
+  "enable_email_notif": true,
+  "enable_sms_notif": false,
+  "enable_browser_notif": true,
+  "reminder_before_minutes": 15
+}
+```
 
 ### Analytics
-- `GET /api/tasks/summary/today` - Today's summary
-- `GET /api/tasks/analytics/progress?days=30` - Progress data
 
-### User
-- `GET /api/user/preferences` - Get notification preferences
-- `PUT /api/user/preferences` - Update preferences
-- `GET /api/activities/locations` - Get login locations for globe
+#### Get Progress Analytics
+```
+GET /api/tasks/analytics/progress?days=7
+Headers: Authorization: Bearer <JWT_TOKEN>
+```
 
-### Notifications
-- `GET /api/user/notifications` - Get user notifications
-- `POST /api/user/notifications/:id/read` - Mark as read
+#### Get Activity Locations
+```
+GET /api/activities/locations
+Headers: Authorization: Bearer <JWT_TOKEN>
+```
 
 ## 🔌 Socket.IO Events
 
-### Client → Server
-- `join_user` - Join user-specific room
+### Client Events (Emit)
+- `join_user` - Connect to server with user ID
 
-### Server → Client
-- `task_created` - New task added
-- `task_updated` - Task modified
+### Server Events (Listen)
+- `task_created` - New task created
+- `task_updated` - Task updated
 - `task_completed` - Task marked complete
-- `task_deleted` - Task removed
-- `task_reminder` - Reminder notification
-- `new_notification` - New in-app notification
-
-## 🎨 Theme Customization
-
-The app uses Tailwind CSS with custom gradients and themes.
-
-**Gradients** are defined in `client/src/gradients.css`
-
-**Dark/Light mode** toggles dynamically and persists in localStorage.
-
-## 🛠️ Development
-
-### Available Scripts
-
-**Root:**
-- `npm run dev` - Start both client and server
-- `npm run build` - Build frontend for production
-
-**Client:**
-- `npm run dev` - Start Vite dev server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-
-**Server:**
-- `npm start` - Start Express server
-- `npm run dev` - Start with nodemon (auto-restart)
+- `task_deleted` - Task deleted
+- `notification` - General notifications received
 
 ## 🐛 Troubleshooting
 
-### Common Issues
+### Frontend Cannot Reach Backend
 
-**Port already in use:**
-```bash
-# Kill process on port 3001 (backend)
-npx kill-port 3001
+**Issue**: API calls fail with 404 or CORS errors
 
-# Kill process on port 5173 (frontend)
-npx kill-port 5173
+**Solutions**:
+1. Verify `VITE_API_URL` environment variable is set in Vercel
+2. Check backend is running on Render dashboard
+3. Ensure backend URL matches exactly (no trailing slash)
+4. Check browser console for specific error messages
+5. Verify JWT token is being sent in Authorization header
+
+### Backend Not Starting Locally
+
+**Issue**: Port already in use or dependencies missing
+
+**Solutions**:
+1. Run `npm install` in server directory
+2. Create `.env` file with `PORT=3001`
+3. Kill process on port 3001: `lsof -ti:3001 | xargs kill -9`
+4. Check Node.js version: `node --version` (requires 18+)
+
+### Socket.IO Connection Issues
+
+**Issue**: Real-time updates not working
+
+**Solutions**:
+1. Verify backend Socket.IO CORS includes frontend URL
+2. Check browser console for WebSocket connection errors
+3. Ensure JWT token is valid (not expired)
+4. Try opening browser DevTools → Network → WS tab to see connections
+
+### Database Errors
+
+**Issue**: SQLite database not found or schema errors
+
+**Solutions**:
+1. Database auto-creates on first run - wait for "Database tables initialized"
+2. Check server logs for initialization messages
+3. Delete `server/activity_tracker.sqlite` and restart to reset
+4. Verify write permissions in server directory
+
+## 🔒 Security Notes
+
+- JWT tokens expire after 1 hour
+- Passwords are hashed with bcrypt (10 salt rounds)
+- Socket.IO configured with CORS whitelist
+- Environment variables contain sensitive data - never commit `.env` files
+- Use strong JWT_SECRET in production (minimum 32 characters)
+- All API endpoints require valid JWT authentication
+
+## 📄 Project Structure
+
 ```
-
-**CORS errors:**
-- Ensure `FRONTEND_URL` in backend `.env` matches your frontend URL
-- Check `allowedOrigins` in `server/index.js`
-
-**Socket.IO not connecting:**
-- Verify frontend `VITE_API_URL` matches backend URL
-- Check browser console for WebSocket errors
-- Ensure backend CORS allows your frontend origin
-
-**Database locked:**
-- Stop all running server instances
-- Delete `server/activity_tracker.sqlite` and restart server (fresh DB)
-
-**Email/SMS not sending:**
-- Verify credentials in `.env`
-- Check Twilio account balance
-- Review server logs for specific errors
-
-## 📝 License
-
-MIT License - feel free to use this project for learning or production.
-
-## 👤 Author
-
-Built with ❤️ by [Your Name]
+activity-tracker/
+├── README.md                 # This file
+├── render.yaml              # Render deployment blueprint
+├── vercel.json             # Vercel deployment config
+├── package.json            # Root package config
+│
+├── client/                 # React frontend
+│   ├── src/
+│   │   ├── components/     # React components
+│   │   ├── App.jsx        # Main app component
+│   │   ├── main.jsx       # Entry point
+│   │   └── index.css      # Styles
+│   ├── package.json       # Frontend dependencies
+│   ├── vite.config.js     # Vite build config
+│   └── index.html         # HTML template
+│
+└── server/                # Node.js backend
+    ├── index.js           # Express app & API routes
+    ├── database.js        # SQLite setup & queries
+    ├── emailService.js    # Email notifications
+    ├── smsService.js      # SMS notifications
+    ├── reminderService.js # Task reminders & cron jobs
+    ├── recurringTaskService.js # Recurring task generation
+    ├── package.json       # Backend dependencies
+    └── .env.example       # Environment variables template
+```
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome!
-
+Contributions are welcome! Feel free to:
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 🙏 Acknowledgments
+## 📝 License
 
-- Tailwind CSS for styling
-- Vercel for frontend hosting
-- Render for backend hosting
-- Three.js community for 3D libraries
-- Recharts for visualization components
-#   a c t i v i t y - t r a c k e r  
- 
+This project is open source and available under the MIT License.
+
+## 💬 Support
+
+For issues and questions:
+- Open an issue on GitHub: [GitHub Issues](https://github.com/VaishnaviThapekar/activity-tracker/issues)
+- Check existing issues for solutions
+- Provide detailed error messages and logs when reporting issues
+
+## 🎉 Acknowledgments
+
+- React, Vite, Tailwind CSS, and all amazing open-source libraries
+- Render for free backend hosting
+- Vercel for frontend deployment
+- GitHub for version control
+
+---
+
+**Status**: ✅ Fully Deployed and Production Ready
+
+- Frontend: Live on Vercel
+- Backend: Live on Render  
+- Real-time: Socket.IO Connected
+- Database: SQLite Active
